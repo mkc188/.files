@@ -36,7 +36,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
@@ -159,7 +159,7 @@ alias pbpaste='xclip -selection clipboard -o'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export HOMEBREW_GITHUB_API_TOKEN=91fbd1a25be2b97d84e5a1efec2dad275a3e0218
+# export HOMEBREW_GITHUB_API_TOKEN=91fbd1a25be2b97d84e5a1efec2dad275a3e0218
 
 export PATH=$PATH:/Users/mkc188/bin
 
@@ -182,9 +182,9 @@ vifm()
   fi
 }
 
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+# export PATH="$HOME/.linuxbrew/bin:$PATH"
+# export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+# export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
