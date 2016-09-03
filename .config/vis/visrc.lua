@@ -46,6 +46,7 @@ vis.events.win_open = function(win)
   -- vis:command('map! normal j gj')
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
+  vis:command('set autoindent')
   vis:command('set theme dark-16')
 
   vis:command('map! normal H ^')
