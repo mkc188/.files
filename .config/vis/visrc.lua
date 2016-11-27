@@ -1,4 +1,3 @@
--- load standard vis module, providing parts of the Lua API
 require('vis')
 
 os.capture = function(cmd, raw)
@@ -38,12 +37,8 @@ fzf = function()
 end
 
 vis.events.win_open = function(win)
-  -- enable syntax highlighting for known file types
   vis.filetype_detect(win)
 
-  -- Your local configuration options e.g.
-  -- vis:command('set number')
-  -- vis:command('map! normal j gj')
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
   vis:command('set autoindent')
@@ -71,17 +66,24 @@ vis.events.win_open = function(win)
   vis:command('map! visual x <register>_d')
   vis:command('map! visual-line x <register>_d')
 
-  vis:command('map! visual s <register>_d<register>0P')
-  vis:command('map! visual-line s <register>_d<register>0P')
+  vis:command('map! visual p pgvy')
+  vis:command('map! visual-line p pgvy')
 
   vis:command('map! visual Y <register>+y')
   vis:command('map! visual-line Y <register>+y')
 
   vis:command('map! insert <C-a> <cursor-line-start>')
   vis:command('map! insert <C-b> <Left>')
-  vis:command('map! insert <C-d> <Backspace>')
+  vis:command('map! insert <C-d> <Delete>')
   vis:command('map! insert <C-e> <cursor-line-end>')
   vis:command('map! insert <C-f> <Right>')
+
+  vis:command('map! insert <Backspace> <vis-mode-normal><register>_X<vis-mode-insert>')
+
+  vis:command('map! visual <C-d> <window-halfpage-down>')
+  vis:command('map! visual-line <C-d> <window-halfpage-down>')
+  vis:command('map! visual <C-u> <window-halfpage-up>')
+  vis:command('map! visual-line <C-u> <window-halfpage-up>')
 
   vis:map(vis.MODE_NORMAL, '-', vifm)
   vis:map(vis.MODE_NORMAL, '\\', fzf)
