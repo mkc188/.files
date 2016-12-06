@@ -55,7 +55,9 @@ vis.events.win_open = function(win)
 
   vis:command('map! normal Q @q')
   vis:command('map! normal j gj')
+  vis:command('map! visual j gj')
   vis:command('map! normal k gk')
+  vis:command('map! visual k gk')
 
   vis:command('map! normal <Space> <prompt-show>')
   vis:command('map! visual <Space> <prompt-show>')
