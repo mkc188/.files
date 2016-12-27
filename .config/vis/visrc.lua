@@ -1,4 +1,6 @@
 require('vis')
+require('plugins/filetype')
+require('plugins/textobject-lexer')
 
 os.capture = function(cmd, raw)
   local f = assert(io.popen(cmd, 'r'))
@@ -36,9 +38,7 @@ fzf = function()
   end
 end
 
-vis.events.win_open = function(win)
-  vis.filetype_detect(win)
-
+vis.events.subscribe(vis.events.INIT, function()
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
   vis:command('set autoindent')
@@ -87,6 +87,9 @@ vis.events.win_open = function(win)
   vis:command('map! visual <C-u> <window-halfpage-up>')
   vis:command('map! visual-line <C-u> <window-halfpage-up>')
 
-  vis:map(vis.MODE_NORMAL, '-', vifm)
-  vis:map(vis.MODE_NORMAL, '\\', fzf)
-end
+  vis:map(vis.modes.NORMAL, '-', vifm)
+  vis:map(vis.modes.NORMAL, '\\', fzf)
+end)
+
+vis.events.subscribe(vis.events.WIN_OPEN, function(win)
+end)
