@@ -68,8 +68,8 @@ vis.events.subscribe(vis.events.INIT, function()
   vis:command('map! visual x <register>_d')
   vis:command('map! visual-line x <register>_d')
 
-  vis:command('map! visual p pgvy')
-  vis:command('map! visual-line p pgvy')
+  vis:command('map! visual p <register>_dP')
+  vis:command('map! visual-line p <register>_dP')
 
   vis:command('map! visual Y <register>+y')
   vis:command('map! visual-line Y <register>+y')
