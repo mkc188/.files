@@ -41,7 +41,6 @@ end
 vis.events.subscribe(vis.events.INIT, function()
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
-  vis:command('set autoindent')
   vis:command('set theme dark-16')
 
   vis:command('map! normal H ^')
