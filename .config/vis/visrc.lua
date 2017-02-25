@@ -41,7 +41,7 @@ end
 ag = function()
   local path = os.capture('ag --nobreak --no-numbers --noheading . | fzf --no-extended --exact')
   if path ~= '' then
-    vis:feedkeys(':e ' .. path .. '<Enter>')
+    vis:feedkeys(':e ' .. string.match(path, "(.-):") .. '<Enter>')
   else
     vis:feedkeys('<editor-redraw>')
   end
