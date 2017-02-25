@@ -38,6 +38,15 @@ fzf = function()
   end
 end
 
+ag = function()
+  local path = os.capture('ag --nobreak --nonumbers --noheading . | fzf --no-extended --exact')
+  if path ~= '' then
+    vis:feedkeys(':e ' .. path .. '<Enter>')
+  else
+    vis:feedkeys('<editor-redraw>')
+  end
+end
+
 vis.events.subscribe(vis.events.INIT, function()
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
@@ -88,6 +97,7 @@ vis.events.subscribe(vis.events.INIT, function()
 
   vis:map(vis.modes.NORMAL, '-', vifm)
   vis:map(vis.modes.NORMAL, '\\', fzf)
+  vis:map(vis.modes.NORMAL, '<F3>', ag)
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
