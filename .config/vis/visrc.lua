@@ -39,7 +39,7 @@ fzf = function()
 end
 
 ag = function()
-  local path = os.capture('ag --nobreak --nonumbers --noheading . | fzf --no-extended --exact')
+  local path = os.capture('ag --nobreak --no-numbers --noheading . | fzf --no-extended --exact')
   if path ~= '' then
     vis:feedkeys(':e ' .. path .. '<Enter>')
   else
