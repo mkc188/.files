@@ -1,4 +1,4 @@
--- 2b4a550d432e5e570bb888ce06440a825c2e2e7c
+-- 5b3c070e979b4a61659eae33668d702ef97291a2
 require('vis')
 
 os.capture = function(cmd, raw)
@@ -46,9 +46,7 @@ ag = function()
   end
 end
 
-vis.events.win_open = function(win)
-  vis.filetype_detect(win)
-
+vis.events.start = function()
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
   vis:command('set autoindent')
@@ -99,5 +97,9 @@ vis.events.win_open = function(win)
 
   vis:map(vis.MODE_NORMAL, '-', vifm)
   vis:map(vis.MODE_NORMAL, '\\', fzf)
-  vis:map(vis.MODE_NORMAL, '<Backspace>', ag)
+  vis:map(vis.MODE_NORMAL, '<F4>', ag)
+end
+
+vis.events.win_open = function(win)
+  vis.filetype_detect(win)
 end
