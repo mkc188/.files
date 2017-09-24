@@ -159,9 +159,9 @@ alias pbpaste='xclip -selection clipboard -o'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# export HOMEBREW_GITHUB_API_TOKEN=91fbd1a25be2b97d84e5a1efec2dad275a3e0218
+export HOMEBREW_GITHUB_API_TOKEN=87ffcab07b03935dc82560d83a2efd14f014b885
 
-export PATH=$PATH:/Users/mkc188/bin
+export PATH=$PATH:/Users/mkc188/bin:~/.cargo/bin
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
@@ -193,3 +193,7 @@ export TERMINFO="$HOME/.terminfo"
 if [ "$(uname)" == "Darwin" ]; then
   export DISPLAY=''
 fi
+
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
