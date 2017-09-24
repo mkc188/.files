@@ -9,7 +9,7 @@ os.capture = function(cmd, raw)
   return s
 end
 
-vifm = function()
+open = function()
   vis.pwd = os.capture('pwd') .. '/'
   fname = vis.win.file.name or '.'
   local dir
@@ -20,7 +20,7 @@ vifm = function()
   end
   vis.cwd = os.capture('dirname ' .. dir) .. '/'
 
-  local path = os.capture('vifm ' .. vis.cwd .. ' --choose-files -')
+  local path = vis.cwd
   if path ~= '' then
     vis:feedkeys(':e ' .. path .. '<Enter>')
   else
@@ -95,7 +95,7 @@ vis.events.start = function()
   vis:command('map! visual <C-u> <window-halfpage-up>')
   vis:command('map! visual-line <C-u> <window-halfpage-up>')
 
-  vis:map(vis.MODE_NORMAL, '-', vifm)
+  vis:map(vis.MODE_NORMAL, '-', open)
   vis:map(vis.MODE_NORMAL, '\\', fzf)
   vis:map(vis.MODE_NORMAL, '<F4>', ag)
 end
