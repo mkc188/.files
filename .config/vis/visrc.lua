@@ -83,6 +83,12 @@ vis.events.subscribe(vis.events.INIT, function()
   vis:command('map! visual Y \'"+y\'')
   vis:command('map! visual-line Y \'"+y\'')
 
+  vis:command('map! insert <C-a> <Escape>^i')
+  vis:command('map! insert <C-b> <Left>')
+  vis:command('map! insert <C-d> <Delete>')
+  vis:command('map! insert <C-e> <Escape>$a')
+  vis:command('map! insert <C-f> <Right>')
+
   vis:map(vis.modes.NORMAL, '-', open)
   vis:map(vis.modes.NORMAL, '\\', fzf)
   vis:map(vis.modes.NORMAL, '<F4>', ag)
