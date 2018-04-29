@@ -1,4 +1,4 @@
--- 5b3c070e979b4a61659eae33668d702ef97291a2
+-- v0.5
 require('vis')
 
 os.capture = function(cmd, raw)
@@ -24,7 +24,7 @@ open = function()
   if path ~= '' then
     vis:feedkeys(':e ' .. path .. '<Enter>')
   else
-    vis:feedkeys('<editor-redraw>')
+    vis:feedkeys('<C-l>')
   end
 end
 
@@ -33,7 +33,7 @@ fzf = function()
   if path ~= '' then
     vis:feedkeys(':e ' .. path .. '<Enter>')
   else
-    vis:feedkeys('<editor-redraw>')
+    vis:feedkeys('<C-l>')
   end
 end
 
@@ -42,11 +42,12 @@ ag = function()
   if path ~= '' then
     vis:feedkeys(':e ' .. string.match(path, "(.-):") .. '<Enter>')
   else
-    vis:feedkeys('<editor-redraw>')
+    vis:feedkeys('<C-l>')
   end
 end
 
-vis.events.start = function()
+vis.events.subscribe(vis.events.INIT, function()
+  -- Your global configuration options
   vis:command('set tabwidth 2')
   vis:command('set expandtab')
   vis:command('set autoindent')
@@ -67,39 +68,26 @@ vis.events.start = function()
   vis:command('map! normal k gk')
   vis:command('map! visual k gk')
 
-  vis:command('map! normal <Space> <prompt-show>')
-  vis:command('map! visual <Space> <prompt-show>')
-  vis:command('map! visual-line <Space> <prompt-show>')
-  vis:command('map! operator-pending <Space> <prompt-show>')
+  vis:command('map! normal <Space> :')
+  vis:command('map! visual <Space> :')
+  vis:command('map! visual-line <Space> :')
+  vis:command('map! operator-pending <Space> :')
 
-  vis:command('map! normal x v<register>_d')
-  vis:command('map! visual x <register>_d')
-  vis:command('map! visual-line x <register>_d')
+  vis:command('map! normal x \'v"_d\'')
+  vis:command('map! visual x \'"_d\'')
+  vis:command('map! visual-line x \'"_d\'')
 
-  vis:command('map! visual p <register>_dP')
-  vis:command('map! visual-line p <register>_dP')
+  vis:command('map! visual p \'"_dP\'')
+  vis:command('map! visual-line p \'"_dP\'')
 
-  vis:command('map! visual Y <register>+y')
-  vis:command('map! visual-line Y <register>+y')
+  vis:command('map! visual Y \'"+y\'')
+  vis:command('map! visual-line Y \'"+y\'')
 
-  vis:command('map! insert <C-a> <cursor-line-start>')
-  vis:command('map! insert <C-b> <Left>')
-  vis:command('map! insert <C-d> <Delete>')
-  vis:command('map! insert <C-e> <cursor-line-end>')
-  vis:command('map! insert <C-f> <Right>')
+  vis:map(vis.modes.NORMAL, '-', open)
+  vis:map(vis.modes.NORMAL, '\\', fzf)
+  vis:map(vis.modes.NORMAL, '<F4>', ag)
+end)
 
-  vis:command('map! insert <Backspace> <vis-mode-normal><register>_X<vis-mode-insert>')
-
-  vis:command('map! visual <C-d> <window-halfpage-down>')
-  vis:command('map! visual-line <C-d> <window-halfpage-down>')
-  vis:command('map! visual <C-u> <window-halfpage-up>')
-  vis:command('map! visual-line <C-u> <window-halfpage-up>')
-
-  vis:map(vis.MODE_NORMAL, '-', open)
-  vis:map(vis.MODE_NORMAL, '\\', fzf)
-  vis:map(vis.MODE_NORMAL, '<F4>', ag)
-end
-
-vis.events.win_open = function(win)
-  vis.filetype_detect(win)
-end
+vis.events.subscribe(vis.events.WIN_OPEN, function(win)
+  -- Your per window configuration options
+end)
