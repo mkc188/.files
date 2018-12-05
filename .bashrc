@@ -153,8 +153,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-export EDITOR='vis'
-export VISUAL='vis'
+export EDITOR='vi'
+export VISUAL='vi'
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
