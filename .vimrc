@@ -72,7 +72,6 @@ set autoread
 set fileformats=unix,dos,mac
 set nrformats-=octal
 set noshowcmd
-setglobal tags=./tags;
 set nomodeline
 set complete-=wbuUi
 set completeopt=menu,menuone,longest
@@ -117,12 +116,18 @@ endif
 if v:version >= 700
   set viminfo=!,'20,<50,s10,h
 endif
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+if v:version < 704 || v:version == 704 && !has('patch276')
+  set shell=/usr/bin/env\ bash
+endif
 
 " -------- ui configuration --------
 set showtabline=0
 set nofoldenable
-set synmaxcol=200
-syntax sync minlines=200
+set synmaxcol=120
+syntax sync minlines=0
 syntax enable
 set lazyredraw
 if has('statusline') && !&cp
