@@ -54,7 +54,7 @@ nmap gP <Plug>(fakeclip-screen-P)
 Plug 'sickill/vim-pasta'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-eunuch'
-Plug 'xero/blaquemagick.vim'
+Plug 'Canop/patine'
 
 call plug#end()
 silent! call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
@@ -126,8 +126,9 @@ endif
 " -------- ui configuration --------
 set showtabline=0
 set nofoldenable
-set synmaxcol=120
-syntax sync minlines=0
+set synmaxcol=180
+syntax sync maxlines=200
+syntax sync minlines=50
 syntax enable
 set lazyredraw
 if has('statusline') && !&cp
@@ -182,6 +183,6 @@ if has('autocmd')
 endif
 
 " -------- color schemes --------
-if !empty(glob('~/.vim/plugged/blaquemagick.vim'))
-  colorscheme blaquemagick
+if !empty(glob('~/.vim/plugged/patine'))
+  colorscheme patine
 endif
