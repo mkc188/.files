@@ -57,10 +57,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'Canop/patine'
 
 call plug#end()
-silent! call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
 endif
-
-runtime macros/matchit.vim
 
 " -------- base configuration --------
 set ttimeoutlen=10
