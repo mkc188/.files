@@ -30,27 +30,16 @@ let delimitMate_expand_cr = 1
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 let g:undotree_SetFocusWhenToggle = 1
 nnoremap <silent> <F5> :UndotreeToggle<CR>
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-let g:tagbar_autofocus = 1
-nnoremap <silent> <F9> :TagbarToggle<CR>
 Plug 'jeetsukumaran/vim-filebeagle'
 let g:filebeagle_suppress_keymaps = 1
 nmap <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <F3> :Files<CR>
+nnoremap <silent> <F4> :Ag<CR>
 Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
-Plug 'Valloric/ListToggle'
-let g:lt_location_list_toggle_map = '<Leader>l'
-let g:lt_quickfix_list_toggle_map = '<Leader>q'
 Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
 Plug 'tpope/vim-sleuth'
-Plug 'kana/vim-fakeclip'
-let g:fakeclip_no_default_key_mappings = 1
-xmap gy <Plug>(fakeclip-screen-y)
-nmap gp <Plug>(fakeclip-screen-p)
-nmap gP <Plug>(fakeclip-screen-P)
 Plug 'sickill/vim-pasta'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-eunuch'
@@ -61,7 +50,6 @@ endif
 
 " -------- base configuration --------
 set ttimeoutlen=10
-set mouse=nvi
 set history=1000
 set encoding=utf-8
 set hidden
@@ -70,8 +58,8 @@ set fileformats=unix,dos,mac
 set nrformats-=octal
 set noshowcmd
 set nomodeline
-set complete-=wbuUi
-set completeopt=menu,menuone,longest
+set complete=.
+set completeopt=menu,noinsert
 set tabpagemax=50
 set sessionoptions-=options
 set virtualedit=block,onemore
@@ -104,7 +92,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set gdefault
 set noswapfile
 if exists('+undofile')
   set undofile
@@ -124,9 +111,6 @@ endif
 set showtabline=0
 set nofoldenable
 set synmaxcol=180
-syntax sync maxlines=200
-syntax sync minlines=50
-syntax enable
 set lazyredraw
 if has('statusline') && !&cp
   set laststatus=2
@@ -138,7 +122,7 @@ endif
 
 " -------- mappings --------
 inoremap <C-U> <C-G>u<C-U>
-nnoremap <silent> <BS> :nohlsearch<CR><BS>
+nnoremap <silent> <BS> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><BS>
 noremap <F1> :checktime<CR>
 noremap <Space> :
 inoremap <C-C> <Esc>
@@ -168,7 +152,6 @@ if has('autocmd')
           \ if line("'\"") > 0 && line("'\"") <= line("$") |
           \   exe 'normal! g`"zvzz' |
           \ endif
-    autocmd GUIEnter * set visualbell t_vb=
     autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
   augroup END
 
@@ -180,6 +163,11 @@ if has('autocmd')
 endif
 
 " -------- color schemes --------
-if !empty(glob('~/.vim/plugged/patine'))
-  colorscheme patine
+if has('syntax')
+  syntax enable
+  syntax sync maxlines=200
+  syntax sync minlines=50
+  if !empty(glob('~/.vim/plugged/patine'))
+    colorscheme patine
+  endif
 endif
