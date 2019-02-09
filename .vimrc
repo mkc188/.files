@@ -18,15 +18,12 @@ let g:loaded_zip = 1
 " -------- plugin manager --------
 silent! if plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
 let g:rsi_no_meta = 1
 Plug 'thinca/vim-visualstar'
 Plug 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 let g:undotree_SetFocusWhenToggle = 1
 nnoremap <silent> <F5> :UndotreeToggle<CR>
@@ -131,15 +128,11 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
-xmap s "_d"0P
 nnoremap x "_x
 xnoremap x "_x
 
 nnoremap Y y$
 xnoremap Y "+y
-noremap H ^
-noremap L $
-xnoremap L g_
 nnoremap Q @q
 
 " -------- autocmd --------
