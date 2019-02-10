@@ -34,18 +34,8 @@ local events = {
 	WIN_STATUS = "Event::WIN_STATUS", -- see @{win_status}
 }
 
-events.file_close = function(...) events.emit(events.FILE_CLOSE, ...) end
-events.file_open = function(...) events.emit(events.FILE_OPEN, ...) end
-events.file_save_post = function(...) events.emit(events.FILE_SAVE_POST, ...) end
-events.file_save_pre = function(...) return events.emit(events.FILE_SAVE_PRE, ...) end
 events.init = function(...) events.emit(events.INIT, ...) end
-events.input = function(...) return events.emit(events.INPUT, ...) end
-events.quit = function(...) events.emit(events.QUIT, ...) end
-events.start = function(...) events.emit(events.START, ...) end
-events.win_close = function(...) events.emit(events.WIN_CLOSE, ...) end
-events.win_highlight = function(...) events.emit(events.WIN_HIGHLIGHT, ...) end
 events.win_open = function(...) events.emit(events.WIN_OPEN, ...) end
-events.win_status = function(...) events.emit(events.WIN_STATUS, ...) end
 
 local handlers = {}
 
@@ -115,50 +105,6 @@ local modes = {
 	[vis.modes.INSERT] = 'INSERT',
 	[vis.modes.REPLACE] = 'REPLACE',
 }
-
-vis.events.subscribe(vis.events.WIN_STATUS, function(win)
-	local left_parts = {}
-	local right_parts = {}
-	local file = win.file
-	local selection = win.selection
-
-	local mode = modes[vis.mode]
-	if mode ~= '' and vis.win == win then
-		table.insert(left_parts, mode)
-	end
-
-	table.insert(left_parts, (file.name or '[No Name]') ..
-	(file.modified and ' [+]' or '') .. (vis.recording and ' @' or ''))
-
-	local count = vis.count
-	local keys = vis.input_queue
-	if keys ~= '' then
-		table.insert(right_parts, keys)
-	elseif count then
-		table.insert(right_parts, count)
-	end
-
-	if #win.selections > 1 then
-		table.insert(right_parts, selection.number..'/'..#win.selections)
-	end
-
-	local size = file.size
-	local pos = selection.pos
-	if not pos then pos = 0 end
-	table.insert(right_parts, (size == 0 and "0" or math.ceil(pos/size*100)).."%")
-
-	if not win.large then
-		local col = selection.col
-		table.insert(right_parts, selection.line..', '..col)
-		if size > 33554432 or col > 65536 then
-			win.large = true
-		end
-	end
-
-	local left = ' ' .. table.concat(left_parts, " » ") .. ' '
-	local right = ' ' .. table.concat(right_parts, " « ") .. ' '
-	win:status(left, right);
-end)
 
 -- default plugins
 
