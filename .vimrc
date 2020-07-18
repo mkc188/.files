@@ -1,19 +1,19 @@
 " -------- basic initialization --------
-let g:loaded_getscriptPlugin = 1
-let loaded_gzip = 1
-let loaded_logiPat = 1
-let g:loaded_matchparen = 1
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-let loaded_rrhelper = 1
-let loaded_spellfile_plugin = 1
-let g:loaded_tarPlugin = 1
-let g:loaded_tar = 1
-let g:loaded_2html_plugin = 1
-let g:loaded_vimballPlugin = 1
-let g:loaded_vimball = 1
-let g:loaded_zipPlugin = 1
-let g:loaded_zip = 1
+silent! let g:loaded_getscriptPlugin = 1
+silent! let loaded_gzip = 1
+silent! let loaded_logiPat = 1
+silent! let g:loaded_matchparen = 1
+silent! let g:loaded_netrw = 1
+silent! let g:loaded_netrwPlugin = 1
+silent! let loaded_rrhelper = 1
+silent! let loaded_spellfile_plugin = 1
+silent! let g:loaded_tarPlugin = 1
+silent! let g:loaded_tar = 1
+silent! let g:loaded_2html_plugin = 1
+silent! let g:loaded_vimballPlugin = 1
+silent! let g:loaded_vimball = 1
+silent! let g:loaded_zipPlugin = 1
+silent! let g:loaded_zip = 1
 
 " -------- plugin manager --------
 function! s:ag_to_qf(line)
@@ -115,7 +115,9 @@ set runtimepath+=/usr/local/opt/fzf,~/.fzf
 " -------- ui configuration --------
 set t_Co=0
 set showtabline=0
-set nofoldenable
+if has('folding')
+  set nofoldenable
+endif
 set synmaxcol=180
 set lazyredraw
 if has('statusline') && !&cp
