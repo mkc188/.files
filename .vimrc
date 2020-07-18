@@ -16,6 +16,8 @@ silent! let g:loaded_zipPlugin = 1
 silent! let g:loaded_zip = 1
 
 " -------- plugin manager --------
+if has('autocmd')
+
 function! s:ag_to_qf(line)
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
@@ -51,6 +53,8 @@ command! -nargs=* Ag call fzf#run({
 \            '--color hl:68,hl+:110',
 \ 'down':    '50%'
 \ })
+
+endif
 
 " -------- base configuration --------
 set ttimeoutlen=10
