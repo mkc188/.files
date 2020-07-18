@@ -16,34 +16,41 @@ let g:loaded_zipPlugin = 1
 let g:loaded_zip = 1
 
 " -------- plugin manager --------
-silent! if plug#begin('~/.vim/plugged')
+function! s:ag_to_qf(line)
+  let parts = split(a:line, ':')
+  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+        \ 'text': join(parts[3:], ':')}
+endfunction
 
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-rsi'
-let g:rsi_no_meta = 1
-Plug 'thinca/vim-visualstar'
-Plug 'Raimondi/delimitMate'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-let g:undotree_SetFocusWhenToggle = 1
-nnoremap <silent> <F5> :UndotreeToggle<CR>
-Plug 'jeetsukumaran/vim-filebeagle'
-let g:filebeagle_suppress_keymaps = 1
-nmap <silent> - <Plug>FileBeagleOpenCurrentBufferDir
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-nnoremap <silent> <F3> :Files<CR>
-nnoremap <silent> <F4> :Ag<CR>
-Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
-Plug 'mbbill/fencview', { 'on': ['FencAutoDetect', 'FencView'] }
-Plug 'tpope/vim-sleuth'
-Plug 'sickill/vim-pasta'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'tpope/vim-eunuch'
-Plug 'Canop/patine'
+function! s:ag_handler(lines)
+  if len(a:lines) < 2 | return | endif
 
-call plug#end()
-endif
+  let cmd = get({'ctrl-x': 'split',
+               \ 'ctrl-v': 'vertical split',
+               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
+
+  let first = list[0]
+  execute cmd escape(first.filename, ' %#\')
+  execute first.lnum
+  execute 'normal!' first.col.'|zz'
+
+  if len(list) > 1
+    call setqflist(list)
+    copen
+    wincmd p
+  endif
+endfunction
+
+command! -nargs=* Ag call fzf#run({
+\ 'source':  printf('ag --nogroup --column --color "%s"',
+\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
+\ 'sink*':    function('<sid>ag_handler'),
+\ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
+\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
+\            '--color hl:68,hl+:110',
+\ 'down':    '50%'
+\ })
 
 " -------- base configuration --------
 set ttimeoutlen=10
@@ -56,7 +63,7 @@ set nrformats-=octal
 set noshowcmd
 set nomodeline
 set complete=.
-set completeopt=menu,noinsert
+set completeopt=longest
 set tabpagemax=50
 set sessionoptions-=options
 set virtualedit=block,onemore
@@ -67,7 +74,10 @@ set nojoinspaces
 set noshelltemp
 set backspace=indent,eol,start
 set autoindent
-set smarttab
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set shiftround
 set linebreak
@@ -85,15 +95,12 @@ set splitbelow
 set splitright
 set visualbell
 set t_vb=
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
 set noswapfile
-if exists('+undofile')
-  set undofile
-  set undodir=~/tmp,~/,.
-endif
+set eventignore=all
 if v:version >= 700
   set viminfo=!,'20,<50,s10,h
 endif
@@ -103,8 +110,10 @@ endif
 if v:version < 704 || v:version == 704 && !has('patch276')
   set shell=/usr/bin/env\ bash
 endif
+set runtimepath+=/usr/local/opt/fzf,~/.fzf
 
 " -------- ui configuration --------
+set t_Co=0
 set showtabline=0
 set nofoldenable
 set synmaxcol=180
@@ -112,55 +121,26 @@ set lazyredraw
 if has('statusline') && !&cp
   set laststatus=2
   set statusline=%t\ %m%r\ %l,%v\ %<%=
-  set statusline+=%{&tabstop}:%{&shiftwidth}:%{&softtabstop}:%{&expandtab?'et':'noet'}
-  set statusline+=\ %{&fileformat}
-  set statusline+=\ %{strlen(&filetype)?&filetype:'None'}
 endif
 
 " -------- mappings --------
 inoremap <C-U> <C-G>u<C-U>
-nnoremap <silent> <BS> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><BS>
-noremap <F1> :checktime<CR>
+nnoremap <silent> <BS> :checktime<CR>
+nnoremap <silent> \ :FZF<CR>
+nnoremap <silent> <C-\> :Ag<CR>
 noremap <Space> :
 inoremap <C-C> <Esc>
 nnoremap <Tab> <C-^>
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-
 nnoremap x "_x
 xnoremap x "_x
-
 nnoremap Y y$
 xnoremap Y "+y
 nnoremap Q @q
 
-" -------- autocmd --------
-if has('autocmd')
-  filetype plugin indent on
-
-  augroup global_settings
-    autocmd!
-    autocmd BufReadPost *
-          \ if line("'\"") > 0 && line("'\"") <= line("$") |
-          \   exe 'normal! g`"zvzz' |
-          \ endif
-    autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
-  augroup END
-
-  augroup filetype_settings
-    autocmd!
-    autocmd FileType vim setlocal keywordprg=:help
-    autocmd FileType cpp setlocal commentstring=//\ %s
-  augroup END
-endif
-
 " -------- color schemes --------
 if has('syntax')
-  syntax enable
-  syntax sync maxlines=200
-  syntax sync minlines=50
-  if !empty(glob('~/.vim/plugged/patine'))
-    colorscheme patine
-  endif
+  syntax off
 endif
