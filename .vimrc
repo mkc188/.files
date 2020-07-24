@@ -94,7 +94,8 @@ set sidescrolloff=5
 set sidescroll=1
 set display+=lastline
 set wildmenu
-set wildmode=longest,full
+set wildmode=list:longest
+set wildcharm=<Tab>
 set splitbelow
 set splitright
 set visualbell
@@ -134,6 +135,7 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <BS> :checktime<CR>
 nnoremap <silent> \ :FZF<CR>
 nnoremap <silent> <C-\> :Ag<CR>
+nnoremap - :e %:p:h<Tab><Tab>
 noremap <Space> :
 inoremap <C-C> <Esc>
 nnoremap <Tab> <C-^>
