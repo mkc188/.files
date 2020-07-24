@@ -96,6 +96,7 @@ set display+=lastline
 set wildmenu
 set wildmode=list:longest
 set wildcharm=<Tab>
+set wildignorecase
 set splitbelow
 set splitright
 set visualbell
