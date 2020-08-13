@@ -45,12 +45,11 @@ function! s:ag_handler(lines)
 endfunction
 
 command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --color "%s"',
+\ 'source':  printf('ag --nogroup --nocolor "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
 \ 'sink*':    function('<sid>ag_handler'),
-\ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-\            '--exact --color hl:68,hl+:110',
+\ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : '.
+\            '--exact',
 \ 'down':    '50%'
 \ })
 
