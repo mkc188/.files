@@ -50,7 +50,7 @@ command! -nargs=* Ag call fzf#run({
 \ 'sink*':    function('<sid>ag_handler'),
 \ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
 \            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-\            '--color hl:68,hl+:110',
+\            '--exact --color hl:68,hl+:110',
 \ 'down':    '50%'
 \ })
 
