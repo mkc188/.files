@@ -45,7 +45,7 @@ function! s:ag_handler(lines)
 endfunction
 
 command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --nocolor "%s"',
+\ 'source':  printf('ag --nogroup --column --nocolor "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
 \ 'sink*':    function('<sid>ag_handler'),
 \ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : '.
