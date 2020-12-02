@@ -48,7 +48,7 @@ command! -nargs=* Ag call fzf#run({
 \ 'source':  printf('ag --nogroup --column --nocolor "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
 \ 'sink*':    function('<sid>ag_handler'),
-\ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : '.
+\ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
 \            '--exact',
 \ 'down':    '50%'
 \ })
