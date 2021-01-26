@@ -1,0 +1,11 @@
+[user]
+	name = mkc188
+	email = mkc188@users.noreply.github.com
+[push]
+	default = simple
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[credential]
+	helper = cache --timeout=86400
