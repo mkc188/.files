@@ -133,7 +133,7 @@ endif
 " -------- mappings --------
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <BS> :checktime<CR>
-nnoremap <silent> \ :FZF<CR>
+nnoremap <silent> \ :FZF!<CR>
 nnoremap <silent> <C-\> :Ag<CR>
 nnoremap - :e %:p:h<Tab><Tab>
 noremap <Space> :
