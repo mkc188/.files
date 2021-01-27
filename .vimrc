@@ -173,4 +173,7 @@ nnoremap Q @q
 " -------- color schemes --------
 if has('syntax')
   syntax off
+  if !empty(glob('~/.vim/plugged/vim-bruin'))
+    colorscheme bruin
+  endif
 endif
