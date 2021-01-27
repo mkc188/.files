@@ -18,12 +18,9 @@ silent! let g:loaded_zip = 1
 " -------- plugin manager --------
 silent! if plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sleuth'
 Plug 'sickill/vim-pasta'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'tpope/vim-eunuch'
-Plug 'https://git.sr.ht/~romainl/vim-bruin'
 
 call plug#end()
 endif
@@ -117,7 +114,7 @@ set incsearch
 set ignorecase
 set smartcase
 set noswapfile
-" set eventignore=all "colorscheme
+set eventignore=all
 if v:version >= 700
   set viminfo=!,'20,<50,s10,h
 endif
@@ -130,7 +127,7 @@ endif
 set runtimepath+=/usr/local/opt/fzf,~/.fzf
 
 " -------- ui configuration --------
-" set t_Co=0 "colorscheme
+set t_Co=0
 set showtabline=0
 if has('folding')
   set nofoldenable
@@ -162,9 +159,5 @@ nnoremap Q @q
 
 " -------- color schemes --------
 if has('syntax')
-  syntax on "colorscheme
-
-  if !empty(glob('~/.vim/plugged/vim-bruin'))
-    colorscheme bruin
-  endif
+  syntax off
 endif
