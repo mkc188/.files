@@ -15,13 +15,26 @@ silent! let g:loaded_vimball = 1
 silent! let g:loaded_zipPlugin = 1
 silent! let g:loaded_zip = 1
 
+" -------- vim-bracketed-paste --------
+let &t_ti .= "\<Esc>[?2004h"
+let &t_te = "\e[?2004l" . &t_te
+
+function! XTermPasteBegin(ret)
+  set pastetoggle=<f29>
+  set paste
+  return a:ret
+endfunction
+
+execute "set <f28>=\<Esc>[200~"
+execute "set <f29>=\<Esc>[201~"
+map <expr> <f28> XTermPasteBegin("i")
+imap <expr> <f28> XTermPasteBegin("")
+vmap <expr> <f28> XTermPasteBegin("c")
+cmap <f28> <nop>
+cmap <f29> <nop>
+
 " -------- plugin manager --------
 silent! if plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sleuth'
-Plug 'sickill/vim-pasta'
-Plug 'ConradIrwin/vim-bracketed-paste'
-
 call plug#end()
 endif
 
