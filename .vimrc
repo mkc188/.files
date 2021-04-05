@@ -178,11 +178,6 @@ if has('syntax')
     "colorscheme apprentice
   endif
 
-  hi clear
-  if exists("syntax_on")
-    syntax reset
-  endif
-
   hi Normal ctermbg=NONE ctermfg=lightgrey cterm=NONE
   hi NonText ctermbg=NONE ctermfg=darkgrey cterm=NONE
   hi EndOfBuffer ctermbg=NONE ctermfg=darkgrey cterm=NONE
