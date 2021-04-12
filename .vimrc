@@ -33,6 +33,23 @@ vmap <expr> <f28> XTermPasteBegin("c")
 cmap <f28> <nop>
 cmap <f29> <nop>
 
+" -------- vim-rsi --------
+inoremap <C-A> <C-O>^
+inoremap <C-X><C-A> <C-A>
+cnoremap <C-A> <Home>
+cnoremap <C-X><C-A> <C-A>
+
+inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+cnoremap <C-B> <Left>
+
+inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+
+inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+
 " -------- plugin manager --------
 silent! if plug#begin('~/.vim/plugged')
 "Plug 'romainl/Apprentice'
@@ -161,6 +178,9 @@ nnoremap <silent> <C-\> :Ag<CR>
 nnoremap - :e %:p:h<Tab><Tab>
 noremap <Space> :
 inoremap <C-C> <Esc>
+inoremap <C-P> <Up>
+inoremap <C-N> <Down>
+inoremap <C-]> <C-N>
 nnoremap <Tab> <C-^>
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
@@ -178,70 +198,30 @@ if has('syntax')
     "colorscheme apprentice
   endif
 
-  hi Normal ctermbg=NONE ctermfg=lightgrey cterm=NONE
-  hi NonText ctermbg=NONE ctermfg=darkgrey cterm=NONE
-  hi EndOfBuffer ctermbg=NONE ctermfg=darkgrey cterm=NONE
-  hi LineNr ctermbg=black ctermfg=lightgrey cterm=NONE
-  hi FoldColumn ctermbg=black ctermfg=lightgrey cterm=NONE
-  hi Folded ctermbg=black ctermfg=lightgrey cterm=NONE
-  hi MatchParen ctermbg=black ctermfg=yellow cterm=NONE
-  hi SignColumn ctermbg=black ctermfg=lightgrey cterm=NONE
-  hi Comment ctermbg=NONE ctermfg=darkgrey cterm=NONE
-  hi Conceal ctermbg=NONE ctermfg=lightgrey cterm=NONE
-  hi Constant ctermbg=NONE ctermfg=red cterm=NONE
-  hi Error ctermbg=NONE ctermfg=darkred cterm=reverse
-  hi Identifier ctermbg=NONE ctermfg=darkblue cterm=NONE
-  hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE
-  hi PreProc ctermbg=NONE ctermfg=darkcyan cterm=NONE
-  hi Special ctermbg=NONE ctermfg=darkgreen cterm=NONE
-  hi Statement ctermbg=NONE ctermfg=blue cterm=NONE
-  hi String ctermbg=NONE ctermfg=green cterm=NONE
-  hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse
-  hi Type ctermbg=NONE ctermfg=magenta cterm=NONE
-  hi Underlined ctermbg=NONE ctermfg=darkcyan cterm=underline
-  hi Pmenu ctermbg=darkgrey ctermfg=lightgrey cterm=NONE
-  hi PmenuSbar ctermbg=darkgrey ctermfg=NONE cterm=NONE
-  hi PmenuSel ctermbg=darkcyan ctermfg=black cterm=NONE
-  hi PmenuThumb ctermbg=darkcyan ctermfg=darkcyan cterm=NONE
-  hi ErrorMsg ctermbg=black ctermfg=darkred cterm=reverse
-  hi ModeMsg ctermbg=black ctermfg=green cterm=reverse
-  hi MoreMsg ctermbg=NONE ctermfg=darkcyan cterm=NONE
-  hi Question ctermbg=NONE ctermfg=green cterm=NONE
-  hi WarningMsg ctermbg=NONE ctermfg=darkred cterm=NONE
-  hi TabLine ctermbg=darkgrey ctermfg=darkyellow cterm=NONE
-  hi TabLineFill ctermbg=darkgrey ctermfg=darkgrey cterm=NONE
-  hi TabLineSel ctermbg=darkyellow ctermfg=black cterm=NONE
-  hi ToolbarLine ctermbg=black ctermfg=NONE cterm=NONE
-  hi ToolbarButton ctermbg=darkgrey ctermfg=lightgrey cterm=NONE
-  hi Cursor ctermbg=lightgrey ctermfg=NONE cterm=NONE
-  hi CursorColumn ctermbg=darkgrey ctermfg=NONE cterm=NONE
-  hi CursorLineNr ctermbg=darkgrey ctermfg=cyan cterm=NONE
-  hi CursorLine ctermbg=darkgrey ctermfg=NONE cterm=NONE
-  hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE
-  hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE
-  hi StatusLine ctermbg=darkyellow ctermfg=black cterm=NONE
-  hi StatusLineNC ctermbg=darkgrey ctermfg=darkyellow cterm=NONE
-  hi StatusLineTerm ctermbg=darkyellow ctermfg=black cterm=NONE
-  hi StatusLineTermNC ctermbg=darkgrey ctermfg=darkyellow cterm=NONE
-  hi Visual ctermbg=black ctermfg=blue cterm=reverse
-  hi VisualNOS ctermbg=NONE ctermfg=NONE cterm=underline
-  hi VertSplit ctermbg=darkgrey ctermfg=darkgrey cterm=NONE
-  hi WildMenu ctermbg=blue ctermfg=black cterm=NONE
-  hi Function ctermbg=NONE ctermfg=yellow cterm=NONE
-  hi SpecialKey ctermbg=NONE ctermfg=darkgrey cterm=NONE
-  hi Title ctermbg=NONE ctermfg=white cterm=NONE
-  hi DiffAdd ctermbg=black ctermfg=green cterm=reverse
-  hi DiffChange ctermbg=black ctermfg=magenta cterm=reverse
-  hi DiffDelete ctermbg=black ctermfg=darkred cterm=reverse
-  hi DiffText ctermbg=black ctermfg=red cterm=reverse
-  hi IncSearch ctermbg=darkred ctermfg=black cterm=NONE
-  hi Search ctermbg=yellow ctermfg=black cterm=NONE
-  hi Directory ctermbg=NONE ctermfg=cyan cterm=NONE
-  hi debugPC ctermbg=darkblue ctermfg=NONE cterm=NONE
-  hi debugBreakpoint ctermbg=darkred ctermfg=NONE cterm=NONE
-  hi SpellBad ctermbg=NONE ctermfg=darkred cterm=undercurl
-  hi SpellCap ctermbg=NONE ctermfg=cyan cterm=undercurl
-  hi SpellLocal ctermbg=NONE ctermfg=darkgreen cterm=undercurl
-  hi SpellRare ctermbg=NONE ctermfg=red cterm=undercurl
-  hi ColorColumn ctermbg=black ctermfg=NONE cterm=NONE
+  set background=dark
+  highlight clear
+  if exists("syntax_on")
+    syntax reset
+  endif
+  let g:colors_name = "k16"
+
+  hi Comment       cterm=None ctermfg=DarkGrey
+  hi Identifier    cterm=Bold ctermfg=Grey
+  hi Special       cterm=None ctermfg=Grey
+  hi Statement     cterm=None ctermfg=Grey
+  hi PreProc       cterm=None ctermfg=Grey
+  hi Type          cterm=None ctermfg=Grey
+  hi Constant      cterm=None ctermfg=Grey
+  hi LineNr        cterm=None ctermfg=Blue
+  hi String        cterm=None ctermfg=Green
+  hi phpFunctions  cterm=Bold ctermfg=Yellow
+  hi Pmenu         cterm=None ctermfg=Lightgrey   ctermbg=DarkGrey
+  hi PmenuSel      cterm=None ctermfg=Black       ctermbg=LightGrey
+  hi Visual        cterm=None ctermfg=Black       ctermbg=LightGrey
+  hi DiffAdd       cterm=None ctermfg=Black       ctermbg=DarkGreen
+  hi DiffDelete    cterm=None ctermfg=DarkRed     ctermbg=None
+  hi DiffChange    cterm=None ctermfg=LightGrey   ctermbg=None
+  hi DiffText      cterm=None ctermfg=Black       ctermbg=White
+  hi TabLineSel    cterm=None ctermfg=White       ctermbg=None
+  hi Todo          cterm=None ctermfg=Black       ctermbg=Red
 endif
