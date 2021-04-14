@@ -146,75 +146,11 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-
-export EDITOR='vi'
-export VISUAL='vi'
-
-export ANDROID_HOME=/usr/local/opt/android-sdk
-
-alias pbcopy='xclip -selection c'
-alias pbpaste='xclip -selection clipboard -o'
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export HOMEBREW_GITHUB_API_TOKEN=87ffcab07b03935dc82560d83a2efd14f014b885
-
-export PATH=$PATH:/Users/mkc188/bin:~/.cargo/bin
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-[[ -s /usr/local/bin/virtualenvwrapper_lazy.sh ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
-
-which ry &>/dev/null && eval "$(ry setup)"
-
-vifm()
-{
-  if [ -f ~/.vifm/lastdir ]; then
-    rm -f ~/.vifm/lastdir
-  fi
-  # "command" prevents recursive call
-  command vifm "$@"
-  if [ -f ~/.vifm/lastdir ]; then
-    cd `cat ~/.vifm/lastdir`
-  fi
-}
-
-# export PATH="$HOME/.linuxbrew/bin:$PATH"
-# export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-# export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-export TERMINFO="$HOME/.terminfo"
-
-if [ "$(uname)" == "Darwin" ]; then
-  export DISPLAY=''
-fi
-
-if [ -x "$(command -v go)" ]; then
-  export PATH=$PATH:/usr/local/opt/go/libexec/bin
-  export PATH=$PATH:$(go env GOPATH)/bin
-  export GOPATH=$(go env GOPATH)
-fi
-
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
-
-xhost +local:root > /dev/null 2>&1
-
-complete -cf sudo
-
-shopt -s expand_aliases
 
 #
 # # ex - archive extractor
@@ -243,5 +179,62 @@ ex ()
 
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+export EDITOR='vi'
+export VISUAL='vi'
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+alias pbcopy='xclip -selection c'
+alias pbpaste='xclip -selection clipboard -o'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Users/mkc188/bin:~/.cargo/bin
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+[[ -s /usr/local/bin/virtualenvwrapper_lazy.sh ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+which ry &>/dev/null && eval "$(ry setup)"
+
+vifm()
+{
+  if [ -f ~/.vifm/lastdir ]; then
+    rm -f ~/.vifm/lastdir
+  fi
+  # "command" prevents recursive call
+  command vifm "$@"
+  if [ -f ~/.vifm/lastdir ]; then
+    cd `cat ~/.vifm/lastdir`
+  fi
+}
+
+export TERMINFO="$HOME/.terminfo"
+
+if [ "$(uname)" == "Darwin" ]; then
+  export DISPLAY=''
+fi
+
+if [ -x "$(command -v go)" ]; then
+  export PATH=$PATH:/usr/local/opt/go/libexec/bin
+  export PATH=$PATH:$(go env GOPATH)/bin
+  export GOPATH=$(go env GOPATH)
+fi
+
+xhost +local:root > /dev/null 2>&1
+
+complete -cf sudo
+
+shopt -s expand_aliases
 
 export usermodmap=$HOME/.Xmodmap
