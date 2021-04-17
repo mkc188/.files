@@ -15,28 +15,6 @@ silent! let g:loaded_vimball = 1
 silent! let g:loaded_zipPlugin = 1
 silent! let g:loaded_zip = 1
 
-" -------- vim-bracketed-paste --------
-if has('autocmd')
-
-silent! let &t_ti .= "\<Esc>[?2004h"
-silent! let &t_te = "\e[?2004l" . &t_te
-
-function! XTermPasteBegin(ret)
-  set pastetoggle=<f29>
-  set paste
-  return a:ret
-endfunction
-
-silent! execute "set <f28>=\<Esc>[200~"
-silent! execute "set <f29>=\<Esc>[201~"
-map <expr> <f28> XTermPasteBegin("i")
-imap <expr> <f28> XTermPasteBegin("")
-vmap <expr> <f28> XTermPasteBegin("c")
-cmap <f28> <nop>
-cmap <f29> <nop>
-
-endif
-
 " -------- vim-rsi --------
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
@@ -58,45 +36,6 @@ cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 silent! if plug#begin('~/.vim/plugged')
 "Plug 'romainl/Apprentice'
 call plug#end()
-endif
-
-if has('autocmd')
-
-function! s:ag_to_qf(line)
-  let parts = split(a:line, ':')
-  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
-        \ 'text': join(parts[3:], ':')}
-endfunction
-
-function! s:ag_handler(lines)
-  if len(a:lines) < 2 | return | endif
-
-  let cmd = get({'ctrl-x': 'split',
-               \ 'ctrl-v': 'vertical split',
-               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
-
-  let first = list[0]
-  execute cmd escape(first.filename, ' %#\')
-  execute first.lnum
-  execute 'normal!' first.col.'|zz'
-
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --nocolor "%s"',
-\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
-\ 'sink*':    function('<sid>ag_handler'),
-\ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-\            '--exact',
-\ 'down':    '50%'
-\ })
-
 endif
 
 " -------- base configuration --------
@@ -229,3 +168,62 @@ if has('syntax')
   hi TabLineSel    cterm=None ctermfg=White       ctermbg=None
   hi Todo          cterm=None ctermfg=Black       ctermbg=Red
 endif
+
+if has('autocmd')
+
+" -------- vim-bracketed-paste --------
+silent! let &t_ti .= "\<Esc>[?2004h"
+silent! let &t_te = "\e[?2004l" . &t_te
+
+function! XTermPasteBegin(ret)
+  set pastetoggle=<f29>
+  set paste
+  return a:ret
+endfunction
+
+silent! execute "set <f28>=\<Esc>[200~"
+silent! execute "set <f29>=\<Esc>[201~"
+map <expr> <f28> XTermPasteBegin("i")
+imap <expr> <f28> XTermPasteBegin("")
+vmap <expr> <f28> XTermPasteBegin("c")
+cmap <f28> <nop>
+cmap <f29> <nop>
+
+" -------- fzf.vim --------
+function! s:ag_to_qf(line)
+  let parts = split(a:line, ':')
+  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+        \ 'text': join(parts[3:], ':')}
+endfunction
+
+function! s:ag_handler(lines)
+  if len(a:lines) < 2 | return | endif
+
+  let cmd = get({'ctrl-x': 'split',
+               \ 'ctrl-v': 'vertical split',
+               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
+
+  let first = list[0]
+  execute cmd escape(first.filename, ' %#\')
+  execute first.lnum
+  execute 'normal!' first.col.'|zz'
+
+  if len(list) > 1
+    call setqflist(list)
+    copen
+    wincmd p
+  endif
+endfunction
+
+command! -nargs=* Ag call fzf#run({
+\ 'source':  printf('ag --nogroup --column --nocolor "%s"',
+\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
+\ 'sink*':    function('<sid>ag_handler'),
+\ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
+\            '--exact',
+\ 'down':    '50%'
+\ })
+
+endif
+
