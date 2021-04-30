@@ -108,6 +108,7 @@ if has('folding')
 endif
 set synmaxcol=180
 set lazyredraw
+set regexpengine=0
 if has('statusline') && !&cp
   set laststatus=2
   set statusline=%t\ %m%r\ %l,%v\ %<%=
