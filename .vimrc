@@ -226,5 +226,10 @@ command! -nargs=* Ag call fzf#run({
 \ 'down':    '50%'
 \ })
 
+augroup filetype_settings
+  autocmd!
+  autocmd FileType html :syntax sync fromstart
+augroup END
+
 endif
 
