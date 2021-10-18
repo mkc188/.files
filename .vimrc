@@ -33,10 +33,10 @@ inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
 cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
 " -------- plugin manager --------
-silent! if plug#begin('~/.vim/plugged')
-"Plug 'romainl/Apprentice'
-call plug#end()
-endif
+"silent! if plug#begin('~/.vim/plugged')
+""Plug 'romainl/Apprentice'
+"call plug#end()
+"endif
 
 " -------- base configuration --------
 set ttimeoutlen=10
@@ -169,6 +169,8 @@ if has('syntax')
   hi DiffText      cterm=None ctermfg=Black       ctermbg=White
   hi TabLineSel    cterm=None ctermfg=White       ctermbg=None
   hi Todo          cterm=None ctermfg=Black       ctermbg=Red
+  
+  silent! syntax on
 endif
 
 if has('autocmd')
