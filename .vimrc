@@ -120,7 +120,7 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <BS> :checktime<CR>
 nnoremap <silent> \ :FZF!<CR>
 nnoremap <silent> <C-\> :Ag<CR>
-nnoremap - :e %:p:h<Tab><Tab>
+nnoremap - :e %:p:h/<Tab>
 noremap <Space> :
 inoremap <C-C> <Esc>
 inoremap <C-P> <Up>
