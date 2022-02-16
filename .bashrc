@@ -49,13 +49,13 @@ fi
 # Repository: https://github.com/mrzool/bash-sensible
 # Version: 0.2.2
 
-# Unique Bash version check
-if ((BASH_VERSINFO[0] < 4))
-then
-  echo "sensible.bash: Looks like you're running an older version of Bash."
-  echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
-  echo "sensible.bash: Keep your software up-to-date!"
-fi
+# # Unique Bash version check
+# if ((BASH_VERSINFO[0] < 4))
+# then
+#   echo "sensible.bash: Looks like you're running an older version of Bash."
+#   echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
+#   echo "sensible.bash: Keep your software up-to-date!"
+# fi
 
 ## GENERAL OPTIONS ##
 
@@ -189,15 +189,12 @@ export VISUAL='vi'
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
-[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-[ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ] && source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection clipboard -o'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:/Users/mkc188/bin:~/.cargo/bin
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:~/bin:~/.cargo/bin
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export WORKON_HOME=$HOME/.virtualenvs
@@ -206,18 +203,6 @@ export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 [[ -s /usr/local/bin/virtualenvwrapper_lazy.sh ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 which ry &>/dev/null && eval "$(ry setup)"
-
-vifm()
-{
-  if [ -f ~/.vifm/lastdir ]; then
-    rm -f ~/.vifm/lastdir
-  fi
-  # "command" prevents recursive call
-  command vifm "$@"
-  if [ -f ~/.vifm/lastdir ]; then
-    cd `cat ~/.vifm/lastdir`
-  fi
-}
 
 export TERMINFO="$HOME/.terminfo"
 
@@ -238,3 +223,7 @@ complete -cf sudo
 shopt -s expand_aliases
 
 export usermodmap=$HOME/.Xmodmap
+
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
