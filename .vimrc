@@ -135,6 +135,7 @@ xnoremap x "_x
 nnoremap Y y$
 xnoremap Y "+y
 nnoremap Q @q
+xnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " -------- color schemes --------
 if has('syntax')
