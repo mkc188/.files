@@ -19,34 +19,31 @@ font:
 key_bindings:
   - { key: Q, mods: Control, chars: "\x11" }
 
-# Colors (Hyper)
+# Colors (Blood Moon)
 colors:
   # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xffffff'
-  cursor:
-    text: '0xF81CE5'
-    cursor: '0xffffff'
+    background: '0x10100E'
+    foreground: '0xC6C6C4'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xd0d0d0'
+    black:   '0x10100E'
+    red:     '0xC40233'
+    green:   '0x009F6B'
+    yellow:  '0xFFD700'
+    blue:    '0x0087BD'
+    magenta: '0x9A4EAE'
+    cyan:    '0x20B2AA'
+    white:   '0xC6C6C4'
 
   # Bright colors
   bright:
-    black:   '0x808080'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xFFFFFF'
+    black:   '0x696969'
+    red:     '0xFF2400'
+    green:   '0x03C03C'
+    yellow:  '0xFDFF00'
+    blue:    '0x007FFF'
+    magenta: '0xFF1493'
+    cyan:    '0x00CCCC'
+    white:   '0xFFFAFA'
