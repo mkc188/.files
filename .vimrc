@@ -170,7 +170,10 @@ if has('syntax')
   hi DiffText      cterm=None ctermfg=Black       ctermbg=White
   hi TabLineSel    cterm=None ctermfg=White       ctermbg=None
   hi Todo          cterm=None ctermfg=Black       ctermbg=Red
-  
+
+  syntax sync minlines=200
+  syntax sync maxlines=500
+
   silent! syntax on
 endif
 
