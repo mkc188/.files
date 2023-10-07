@@ -227,3 +227,5 @@ export usermodmap=$HOME/.Xmodmap
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+export NO_COLOR=1
