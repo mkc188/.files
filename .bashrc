@@ -187,22 +187,22 @@ export LANGUAGE=en_US.UTF-8
 export EDITOR='vi'
 export VISUAL='vi'
 
-export ANDROID_HOME=/usr/local/opt/android-sdk
+# export ANDROID_HOME=/usr/local/opt/android-sdk
 
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection clipboard -o'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:~/bin:~/.cargo/bin
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+# export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:~/bin:~/.cargo/bin
+# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-[[ -s /usr/local/bin/virtualenvwrapper_lazy.sh ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+# [[ -s /usr/local/bin/virtualenvwrapper_lazy.sh ]] && source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-which ry &>/dev/null && eval "$(ry setup)"
+# which ry &>/dev/null && eval "$(ry setup)"
 
 export TERMINFO="$HOME/.terminfo"
 
@@ -210,11 +210,11 @@ if [ "$(uname)" == "Darwin" ]; then
   export DISPLAY=''
 fi
 
-if [ -x "$(command -v go)" ]; then
-  export PATH=$PATH:/usr/local/opt/go/libexec/bin
-  export PATH=$PATH:$(go env GOPATH)/bin
-  export GOPATH=$(go env GOPATH)
-fi
+# if [ -x "$(command -v go)" ]; then
+#   export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#   export PATH=$PATH:$(go env GOPATH)/bin
+#   export GOPATH=$(go env GOPATH)
+# fi
 
 xhost +local:root > /dev/null 2>&1
 
@@ -224,7 +224,7 @@ shopt -s expand_aliases
 
 export usermodmap=$HOME/.Xmodmap
 
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+# [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
