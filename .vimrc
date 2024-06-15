@@ -67,6 +67,7 @@ set softtabstop=2
 set expandtab
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set shiftround
+set nowrap
 set scrolloff=1
 set sidescrolloff=5
 set sidescroll=1
@@ -117,6 +118,7 @@ nnoremap <silent> \ :FZF!<CR>
 nnoremap <silent> <C-\> :Ag<CR>
 nnoremap - :e %:p:h/<Tab>
 noremap <Space> :
+nnoremap <silent> <Enter> :set wrap!<CR>
 inoremap <C-C> <Esc>
 inoremap <C-P> <Up>
 inoremap <C-N> <Down>
