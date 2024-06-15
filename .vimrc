@@ -103,7 +103,7 @@ set showtabline=0
 if has('folding')
   set nofoldenable
 endif
-set synmaxcol=180
+set synmaxcol=120
 set lazyredraw
 set regexpengine=0
 if has('statusline') && !&cp
