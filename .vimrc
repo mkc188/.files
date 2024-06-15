@@ -67,11 +67,6 @@ set softtabstop=2
 set expandtab
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set shiftround
-set linebreak
-if exists('+breakindent')
-  set breakindent
-  set showbreak=\ +
-endif
 set scrolloff=1
 set sidescrolloff=5
 set sidescroll=1
