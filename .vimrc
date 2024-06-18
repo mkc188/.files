@@ -44,7 +44,7 @@ set history=1000
 set encoding=utf-8
 set hidden
 set autoread
-set fileformats=unix,dos,mac
+set fileformats=unix,dos
 set nrformats-=octal
 set noshowcmd
 set nomodeline
@@ -105,7 +105,6 @@ if has('folding')
 endif
 set synmaxcol=120
 set lazyredraw
-set regexpengine=0
 if has('statusline') && !&cp
   set laststatus=2
   set statusline=%t\ %m%r\ %l,%v\ %<%=
