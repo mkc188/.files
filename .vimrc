@@ -68,9 +68,6 @@ set expandtab
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set shiftround
 set nowrap
-set scrolloff=1
-set sidescrolloff=5
-set sidescroll=1
 set display+=lastline
 set wildmenu
 set wildmode=list:longest
