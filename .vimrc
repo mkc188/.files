@@ -191,6 +191,8 @@ cmap <f28> <nop>
 cmap <f29> <nop>
 
 " -------- fzf.vim --------
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+
 function! s:ag_to_qf(line)
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
