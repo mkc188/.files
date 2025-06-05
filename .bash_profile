@@ -1,2 +1,2 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-source ~/.bashrc
+bind '"\C-p": history-search-backward'
+bind '"\C-n": history-search-forward'
