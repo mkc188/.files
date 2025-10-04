@@ -8,7 +8,7 @@
 	clean = git media clean %f
 	smudge = git media smudge %f
 [credential]
-	helper = cache --timeout=86400
+	helper = cache --timeout=315360000
 [pull]
 	rebase = false
 [rerere]
