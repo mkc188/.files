@@ -92,7 +92,7 @@ endif
 if v:version < 704 || v:version == 704 && !has('patch276')
   set shell=/usr/bin/env\ bash
 endif
-set runtimepath+=/usr/local/opt/fzf,~/.fzf,/usr/share/doc/fzf/examples
+set runtimepath+=/usr/local/opt/fzf,~/.fzf,/usr/share/doc/fzf/examples,/opt/homebrew/opt/fzf
 
 " -------- ui configuration --------
 set t_Co=16
