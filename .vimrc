@@ -225,7 +225,6 @@ command! -nargs=* Ag call fzf#run({
 \ 'sink*':    function('<sid>ag_handler'),
 \ 'options': '--expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
 \            '--exact',
-\ 'down':    '50%'
 \ })
 
 augroup filetype_settings
