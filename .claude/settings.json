@@ -1,0 +1,62 @@
+{
+  "promptSuggestionEnabled": false,
+  "env": {
+    "API_TIMEOUT_MS": "36000000",
+    "BASH_DEFAULT_TIMEOUT_MS": "7200000",
+    "BASH_MAX_TIMEOUT_MS": "36000000",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
+    "CLAUDE_CODE_DISABLE_FAST_MODE": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK": "1",
+    "CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL": "1",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
+    "CLAUDE_CODE_IDE_SKIP_VALID_CHECK": "1",
+    "CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH": "1",
+    "CLAUDE_CODE_SKIP_BEDROCK_AUTH": "1",
+    "CLAUDE_CODE_SKIP_FOUNDRY_AUTH": "1",
+    "CLAUDE_CODE_SKIP_MANTLE_AUTH": "1",
+    "CLAUDE_CODE_SKIP_VERTEX_AUTH": "1",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_COST_WARNINGS": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_INTERLEAVED_THINKING": "1",
+    "DISABLE_TELEMETRY": "1",
+    "DO_NOT_TRACK": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "plansDirectory": "./plans",
+  "prefersReducedMotion": true,
+  "terminalProgressBarEnabled": false,
+  "effortLevel": "high",
+  "permissions": {
+    "allow": [
+      "Bash(flutter test:*)",
+      "Bash(flutter analyze:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "awaySummaryEnabled": false,
+  "theme": "dark",
+  "editorMode": "vim",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  }
+}
