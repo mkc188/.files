@@ -1,5 +1,4 @@
 {
-  "promptSuggestionEnabled": false,
   "env": {
     "API_TIMEOUT_MS": "36000000",
     "BASH_DEFAULT_TIMEOUT_MS": "7200000",
@@ -32,10 +31,6 @@
     "commit": "",
     "pr": ""
   },
-  "plansDirectory": "./plans",
-  "prefersReducedMotion": true,
-  "terminalProgressBarEnabled": false,
-  "effortLevel": "high",
   "permissions": {
     "allow": [
       "Bash(flutter test:*)",
@@ -43,9 +38,6 @@
     ],
     "defaultMode": "auto"
   },
-  "awaySummaryEnabled": false,
-  "theme": "dark",
-  "editorMode": "vim",
   "hooks": {
     "PreToolUse": [
       {
@@ -57,6 +49,47 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mimok/.claude/hooks/context-mode-cache-heal.mjs\""
+          }
+        ]
+      }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/ccline/ccline",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "context-mode@context-mode": true
+  },
+  "extraKnownMarketplaces": {
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    },
+    "context-mode": {
+      "source": {
+        "source": "github",
+        "repo": "mksglu/context-mode"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "plansDirectory": "./plans",
+  "prefersReducedMotion": true,
+  "theme": "dark",
+  "editorMode": "vim",
+  "autoCompactEnabled": true,
+  "terminalProgressBarEnabled": false
 }
