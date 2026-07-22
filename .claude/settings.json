@@ -50,6 +50,7 @@
       }
     ]
   },
+  "workflowKeywordTriggerEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "bunx ccusage statusline"
@@ -80,5 +81,7 @@
   "theme": "dark",
   "editorMode": "vim",
   "autoCompactEnabled": true,
-  "terminalProgressBarEnabled": false
+  "switchModelsOnFlag": false,
+  "terminalProgressBarEnabled": false,
+  "enableWorkflows": false
 }
