@@ -4,7 +4,6 @@
     "BASH_DEFAULT_TIMEOUT_MS": "7200000",
     "BASH_MAX_TIMEOUT_MS": "36000000",
     "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
-    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
     "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1",
     "CLAUDE_CODE_DISABLE_FAST_MODE": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
@@ -39,17 +38,7 @@
     "defaultMode": "auto"
   },
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      }
-    ],
+    "PreToolUse": [],
     "SessionStart": [
       {
         "hooks": [
@@ -88,6 +77,7 @@
   "awaySummaryEnabled": false,
   "plansDirectory": "./plans",
   "prefersReducedMotion": true,
+  "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "editorMode": "vim",
   "autoCompactEnabled": true,
