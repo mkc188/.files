@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"/Users/mimok/.claude/hooks/context-mode-cache-heal.mjs\""
+            "command": "~/.claude/hooks/context-mode-cache-heal.mjs"
           }
         ]
       }
@@ -52,8 +52,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/ccline/ccline",
-    "padding": 0
+    "command": "bunx ccusage statusline"
   },
   "enabledPlugins": {
     "context-mode@context-mode": true
