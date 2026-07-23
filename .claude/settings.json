@@ -51,10 +51,11 @@
       }
     ]
   },
+  "enableWorkflows": false,
   "workflowKeywordTriggerEnabled": false,
   "statusLine": {
     "type": "command",
-    "command": "bunx ccusage statusline"
+    "command": "npx ccusage@latest statusline"
   },
   "enabledPlugins": {
     "context-mode@context-mode": true
@@ -74,6 +75,7 @@
     }
   },
   "effortLevel": "high",
+  "autoCompactWindow": 1000000,
   "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
   "plansDirectory": "./plans",
@@ -83,6 +85,5 @@
   "editorMode": "vim",
   "autoCompactEnabled": true,
   "switchModelsOnFlag": false,
-  "terminalProgressBarEnabled": false,
-  "enableWorkflows": false
+  "terminalProgressBarEnabled": false
 }
