@@ -1,13 +1,27 @@
 {
-  "lastChangelogVersion": "0.84.2",
-  "theme": "dark",
+  "defaultModel": "mimo-v2.5",
   "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "high",
-  "showCacheMissNotices": true,
   "enableInstallTelemetry": false,
+  "httpIdleTimeoutMs": 0,
+  "lastChangelogVersion": "0.84.4",
   "packages": [
+    "npm:@ollama/pi-web-search",
+    "npm:better-pi-rewind",
+    "npm:@pi-lab/input-history",
+    "npm:@monotykamary/pi-retry",
     "npm:pi-blackhole"
   ],
-  "httpIdleTimeoutMs": 0
+  "retry": {
+    "enabled": true,
+    "maxRetries": 999,
+    "baseDelayMs": 2000,
+    "provider": {
+      "timeoutMs": 3600000,
+      "maxRetries": 0,
+      "maxRetryDelayMs": 60000
+    }
+  },
+  "showCacheMissNotices": true,
+  "theme": "dark"
 }
