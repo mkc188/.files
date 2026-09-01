@@ -1,6 +1,6 @@
 {
-  "defaultModel": "mimo-v2.5",
-  "defaultProvider": "opencode-go",
+  "defaultModel": "mimo-v2.5-free",
+  "defaultProvider": "opencode",
   "defaultThinkingLevel": "high",
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
@@ -10,7 +10,8 @@
     "npm:better-pi-rewind",
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
-    "npm:pi-blackhole"
+    "npm:pi-blackhole",
+    "npm:@marks/pi-subagent"
   ],
   "retry": {
     "enabled": true,
