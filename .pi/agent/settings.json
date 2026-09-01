@@ -6,11 +6,11 @@
   "httpIdleTimeoutMs": 0,
   "lastChangelogVersion": "0.84.4",
   "packages": [
-    "npm:@ollama/pi-web-search",
+    "npm:pi-blackhole",
     "npm:better-pi-rewind",
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
-    "npm:pi-blackhole",
+    "npm:@ollama/pi-web-search",
     "npm:@marks/pi-subagent",
     "npm:@llblab/pi-telegram"
   ],
