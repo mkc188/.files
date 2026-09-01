@@ -11,7 +11,8 @@
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
     "npm:pi-blackhole",
-    "npm:@marks/pi-subagent"
+    "npm:@marks/pi-subagent",
+    "npm:@llblab/pi-telegram"
   ],
   "retry": {
     "enabled": true,
