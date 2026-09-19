@@ -4,13 +4,15 @@
   "defaultThinkingLevel": "high",
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "0.85.1",
   "packages": [
     "npm:pi-blackhole",
     "npm:better-pi-rewind",
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
     "npm:pi-autoresearch",
+    "npm:@herbertgao/sol-pi",
+    "npm:@ollama/pi-web-search",
     "npm:@llblab/pi-telegram"
   ],
   "retry": {
