@@ -1,17 +1,17 @@
 {
-  "defaultModel": "mimo-v2.5",
+  "defaultModel": "deepseek-v4.1-flash",
   "defaultProvider": "opencode-go",
   "defaultThinkingLevel": "high",
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.87.1",
   "packages": [
     "npm:pi-blackhole",
     "npm:better-pi-rewind",
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
-    "npm:pi-autoresearch",
-    "npm:@herbertgao/sol-pi",
+    "npm:pi-invisible-continue",
+    "npm:pi-idle-time",
     "npm:@ollama/pi-web-search",
     "npm:@llblab/pi-telegram"
   ],
