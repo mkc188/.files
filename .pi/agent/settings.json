@@ -7,6 +7,7 @@
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
   "lastChangelogVersion": "1.0.4",
+  "midRunCompaction": "resume",
   "packages": [
     "npm:pi-blackhole",
     "npm:better-pi-rewind",
