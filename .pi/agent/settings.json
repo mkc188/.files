@@ -6,15 +6,15 @@
   "defaultTools": ["+codemode"],
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
-  "lastChangelogVersion": "1.0.4",
-  "midRunCompaction": "resume",
+  "lastChangelogVersion": "1.5.2",
   "packages": [
     "npm:pi-blackhole",
     "npm:better-pi-rewind",
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
     "npm:pi-invisible-continue",
-    "npm:pi-idle-time",
+    "npm:@pi-spice/minimal-subagents",
+    "npm:@tmustier/pi-ralph-wiggum",
     "npm:@ollama/pi-web-search",
     "npm:@llblab/pi-telegram"
   ],
