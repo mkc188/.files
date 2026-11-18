@@ -13,8 +13,8 @@
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
     "npm:pi-invisible-continue",
-    "npm:@pi-spice/minimal-subagents",
-    "npm:@tmustier/pi-ralph-wiggum",
+    "npm:@mazli/pi-worktree",
+    "npm:@matthewfl/pi-simple-goal",
     "npm:@ollama/pi-web-search",
     "npm:@llblab/pi-telegram"
   ],
