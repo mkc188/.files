@@ -16,7 +16,8 @@
     "npm:@mazli/pi-worktree",
     "npm:@matthewfl/pi-simple-goal",
     "npm:@ollama/pi-web-search",
-    "npm:@llblab/pi-telegram"
+    "npm:@llblab/pi-telegram",
+    "npm:opencode-pi"
   ],
   "showCacheMissNotices": true,
   "theme": "dark"
