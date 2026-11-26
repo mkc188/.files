@@ -18,7 +18,7 @@
     "npm:@mazli/pi-worktree",
     "npm:@matthewfl/pi-simple-goal",
     "npm:pi-opencode-cli-bridge",
-    "npm:@arcanemachine/pi-web-search",
+    "npm:@tduyng/pi-web",
     "npm:@nilskluewer/pi-subagent",
     "npm:@llblab/pi-telegram"
   ],
