@@ -1,12 +1,14 @@
 {
   "codemode.mode": "only",
-  "defaultModel": "deepseek-v4.1-flash",
-  "defaultProvider": "opencode-go",
+  "defaultModel": "opencode/big-pickle",
+  "defaultProvider": "opencode-cli",
   "defaultThinkingLevel": "high",
-  "defaultTools": ["+codemode"],
+  "defaultTools": [
+    "+codemode"
+  ],
   "enableInstallTelemetry": false,
   "httpIdleTimeoutMs": 0,
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.1",
   "packages": [
     "npm:pi-blackhole",
     "npm:better-pi-rewind",
@@ -15,10 +17,16 @@
     "npm:pi-invisible-continue",
     "npm:@mazli/pi-worktree",
     "npm:@matthewfl/pi-simple-goal",
-    "npm:@ollama/pi-web-search",
-    "npm:@llblab/pi-telegram",
-    "npm:opencode-pi"
+    "npm:pi-opencode-cli-bridge",
+    "npm:@arcanemachine/pi-web-search",
+    "npm:@nilskluewer/pi-subagent",
+    "npm:@llblab/pi-telegram"
   ],
-  "showCacheMissNotices": true,
-  "theme": "dark"
+  "theme": "dark",
+  "notices": {
+    "cacheMisses": true,
+    "cacheWarming": true,
+    "compactionCosts": true,
+    "reasoningDrops": true
+  }
 }
