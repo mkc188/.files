@@ -15,10 +15,10 @@
     "npm:@pi-lab/input-history",
     "npm:@monotykamary/pi-retry",
     "npm:pi-invisible-continue",
-    "npm:@mazli/pi-worktree",
+    "npm:pi-edit-fence",
     "npm:@matthewfl/pi-simple-goal",
     "npm:pi-opencode-cli-bridge",
-    "npm:@tduyng/pi-web",
+    "npm:@everyx/pi-web-tools",
     "npm:@nilskluewer/pi-subagent",
     "npm:@llblab/pi-telegram"
   ],
